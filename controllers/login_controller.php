@@ -95,9 +95,11 @@ function login($user,$pass){
             $data->SUN = $usuario;
             $data->STASA=$jwt;
             $data->SUID = SED::encrypt_decrypt('encrypt',$id); 
+            $data->noexiste=false;  
         }
         else{
             $data->estatus=false;
+            $data->noexiste=true;  
             $data->mensaje='Usuario o contraseña incorrecto.';    
         }
         return json_encode($data);

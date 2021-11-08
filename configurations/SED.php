@@ -20,5 +20,5 @@
 			return $output;
 		}
 	}
-	//echo SED::encrypt_decrypt('encrypt','admin1');
+	//echo SED::encrypt_decrypt('encrypt','admin1');RnorTC9aTG4yMC9jQU93ck9CaHo2UT09
 ?>
