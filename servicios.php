@@ -9,7 +9,9 @@
             $obj=json_decode($_POST);
             if(get_token(getBearerToken())){
                 switch($obj->{"operation"}){
-                    case "":
+                    case "1":
+                        break;
+                    case "2":
                         break;
                 }
             }else{
@@ -18,11 +20,12 @@
             break;
 
         case 'GET':
-            if(get_token(getBearerToken())){
+            if(isset($_GET["id"])){
+                $id=$_GET["id"];
+                echo get_producto($id);
             }else{
-                echo json_encode(array('status' => false, 'mensaje' => 'token invalido'));
+                echo get_productos();
             }
-            
         break;
 
         case 'PUT':

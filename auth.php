@@ -32,7 +32,11 @@ function get_token($obj){
 }
 
 function Get($id){
-    $db = new PDO('mysql:host=' . BD_SERVIDOR . ';dbname=' . BD_NOMBRE . ';charset=utf8', BD_USUARIO, BD_PASSWORD);
+    global $servername;
+    global $username;
+    global $password;
+    global $database;
+    $db = new PDO('mysql:host=' . $servername . ';dbname=' . $database . ';charset=utf8', $username, $password);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     try {
         $consulta = $db->prepare("SELECT * FROM login WHERE id_login=$id");
