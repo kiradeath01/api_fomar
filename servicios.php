@@ -7,22 +7,27 @@
         case 'POST':
             $_POST=file_get_contents('php://input',true);
             $obj=json_decode($_POST);
-            if(get_token(getBearerToken())){
-                switch($obj->{"operation"}){
-                    case "1":
-                        break;
-                    case "2":
-                        break;
-                }
-            }else{
-                echo json_encode(array('status' => false, 'mensaje' => 'token invalido'));
+            switch($obj->{"operation"}){
+                case "1":
+                    echo get_colores($obj->{"id"});
+                    break;
+                case "2":
+                    //echo "entro";
+                    echo referencia_pago($obj);
+                    break;
+                case "3":
+                    echo guardar_pago($obj);
+                    break;
             }
             break;
-
         case 'GET':
             if(isset($_GET["id"])){
                 $id=$_GET["id"];
-                echo get_producto($id);
+                $nombre_color="Gris";
+                if(isset($_GET["color"])){
+                    $nombre_color=$_GET["color"];
+                }
+                echo get_producto($id,$nombre_color);
             }else{
                 echo get_productos();
             }

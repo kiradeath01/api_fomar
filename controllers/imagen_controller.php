@@ -7,6 +7,7 @@ function Get_all($id_producto){
     $data = new StdClass();
     $dataimg = new StdClass();
     $datadesc = new StdClass();
+    global $conn;
     $sql="SELECT * FROM cat_imagenes WHERE id_producto=$id_producto";
     $query =  mysqli_query($conn, $sql);
     if(mysqli_num_rows($query)>0){
@@ -27,6 +28,7 @@ function Get_imagen($id){
     $dataimg = new StdClass();
     $datadesc = new StdClass();
     $sql="SELECT * FROM cat_imagenes WHERE id_imagenes=$id";
+    global $conn;
     $query =  mysqli_query($conn, $sql);
     if(mysqli_num_rows($query)>0){
       while($row = mysqli_fetch_array($query)){
@@ -44,6 +46,7 @@ function Get_imagen($id){
 
 function Create_imagen($obj){
   $data = new StdClass();
+  global $conn;
   try {
       $peso=$obj->{"peso"};
       $dimencion=$obj->{"dimencion"};
@@ -71,6 +74,7 @@ function Create_imagen($obj){
 
 function Update_imagen($obj){
   $data = new StdClass();
+  global $conn;
   try {
     $url_imagen=$obj->{"url_imagen"};
     $descripcion=$obj->{"descripcion"};
@@ -94,6 +98,7 @@ function Update_imagen($obj){
 
 function Delete_iamgen($id){
   $data = new StdClass();
+  global $conn;
   try {
     global $conn;
     $sql="DELETE FROM `cat_imagenes` WHERE  id_imagenes=$id";

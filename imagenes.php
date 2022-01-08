@@ -1,6 +1,6 @@
 <?php  
     require_once 'auth.php'; 
-    require __DIR__ . '/controllers/configuracion_controller.php'; 
+    require __DIR__ . '/controllers/imagen_controller.php'; 
     require __DIR__ . '/configurations/bearer_token.php'; 
     header("Content-Type: application/json");
     switch($_SERVER['REQUEST_METHOD']){
@@ -15,17 +15,18 @@
             break;
 
         case 'GET':
-            if(get_token(getBearerToken())){
-                if(isset($_GET["id"])){
-                    $id=$_GET["id"];
-                    echo Get_imagen($id);
-                }else{
+            if(isset($_GET["id"])){
+                $id=$_GET["id"];
+                echo Get_imagen($id);
+            }else{
+                if(get_token(getBearerToken())){
                     $id=$_GET["id_producto"];
                     echo GetAll($id);
+                }else{
+                    echo json_encode(array('status' => false, 'mensaje' => 'token invalido'));
                 }
-            }else{
-                echo json_encode(array('status' => false, 'mensaje' => 'token invalido'));
             }
+            
             
         break;
 
